@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <title>booting up  &middot; Panic! at the Kernel</title>
+  <title>Booting Memtest86 with UEFI  &middot; Panic! at the Kernel</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="HandheldFriendly" content="True">
 <meta name="MobileOptimized" content="320">
@@ -14,21 +14,27 @@
 
 <meta name="description" content="" />
 
-<meta name="keywords" content="">
+<meta name="keywords" content="uefi, linux, systemd-boot, ">
 
 
-<meta property="og:title" content="booting up  &middot; Panic! at the Kernel ">
+<meta property="og:title" content="Booting Memtest86 with UEFI  &middot; Panic! at the Kernel ">
 <meta property="og:site_name" content="Panic! at the Kernel"/>
-<meta property="og:url" content="https://liranv.github.io/post/bootingup/" />
+<meta property="og:url" content="https://liranv.github.io/post/booting-memtest86-uefi/" />
 <meta property="og:locale" content="en-EN">
 
 
 <meta property="og:type" content="article" />
 <meta property="og:description" content=""/>
-<meta property="og:article:published_time" content="2016-12-18T22:50:30&#43;02:00" />
-<meta property="og:article:modified_time" content="2016-12-18T22:50:30&#43;02:00" />
+<meta property="og:article:published_time" content="2016-12-19T04:42:12&#43;02:00" />
+<meta property="og:article:modified_time" content="2016-12-19T04:42:12&#43;02:00" />
 
   
+    
+<meta property="og:article:tag" content="uefi">
+    
+<meta property="og:article:tag" content="linux">
+    
+<meta property="og:article:tag" content="systemd-boot">
     
   
 
@@ -36,9 +42,9 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@LiranV" />
 <meta name="twitter:creator" content="@LiranV" />
-<meta name="twitter:title" content="booting up" />
+<meta name="twitter:title" content="Booting Memtest86 with UEFI" />
 <meta name="twitter:description" content="" />
-<meta name="twitter:url" content="https://liranv.github.io/post/bootingup/" />
+<meta name="twitter:url" content="https://liranv.github.io/post/booting-memtest86-uefi/" />
 <meta name="twitter:domain" content="https://liranv.github.io">
   
 
@@ -46,20 +52,20 @@
   {
     "@context": "http://schema.org",
     "@type": "Article",
-    "headline": "booting up",
+    "headline": "Booting Memtest86 with UEFI",
     "author": {
       "@type": "Person",
       "name": "http://profiles.google.com/+?rel=author"
     },
-    "datePublished": "2016-12-18",
+    "datePublished": "2016-12-19",
     "description": "",
-    "wordCount":  2 
+    "wordCount":  434 
   }
 </script>
 
 
 
-<link rel="canonical" href="https://liranv.github.io/post/bootingup/" />
+<link rel="canonical" href="https://liranv.github.io/post/booting-memtest86-uefi/" />
 
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://liranv.github.io/touch-icon-144-precomposed.png">
 <link href="https://liranv.github.io/favicon.png" rel="icon">
@@ -162,18 +168,24 @@
 
 <article id="main-content" class="container main_content single">
   <header class="container hat">
-  <h1>booting up
+  <h1>Booting Memtest86 with UEFI
 </h1>
 
   <div class="metas">
-<time datetime="2016-12-18">18 Dec, 2016</time>
+<time datetime="2016-12-19">19 Dec, 2016</time>
 
 
   
-  &middot; Read in about 1 min
-  &middot; (2 Words)
+  &middot; Read in about 3 min
+  &middot; (434 Words)
   <br>
   
+<a class="label" href="https://liranv.github.io/tags/uefi">uefi</a>
+
+<a class="label" href="https://liranv.github.io/tags/linux">linux</a>
+
+<a class="label" href="https://liranv.github.io/tags/systemd-boot">systemd-boot</a>
+
 
 
 </div>
@@ -183,7 +195,67 @@
   <div class="container content">
   
 
-<h4 id="hello-world">Hello, World!</h4>
+<p>For a very long time I&rsquo;ve been using <a href="http://www.memtest.org">Memtest86+</a> (Memtest86 fork) to test RAM modules.<br />
+Whether I was overcloking my own PC, debugging blue screens or instabilities, this was my go-to tool.</p>
+
+<p>The original Memtest86 was developed by a man named Chris Brady, but was later purchased by <a href="https://www.passmark.com">PassMark Software</a>,
+and now being actively developed by them.
+Memtest86+ on the other hand seems to be abandoned by now, with the latest release date being September 27, 2013.
+Unlike Memtest86+, Memtest86 is a non open-source software, luckily PassMark still offers a free version with most of the needed
+features included (<a href="http://www.memtest86.com/features.htm">feature table</a>).
+So for the last few years I&rsquo;ve been using Memtest86, and I get the impression it&rsquo;s working as good, if not better
+than Memtest86+ while providing better support for new hardware (e.g., DDR4), and most importantly, provides an EFI version.</p>
+
+<h3 id="let-s-get-down-to-business">Let&rsquo;s Get Down to Business</h3>
+
+<p>Often times I would boot Memtest86 from a USB drive or even a CD in the ancient days.
+This was fine for booting Memtest86 on machines other than mine.
+But flashing a USB drive with Memtest86 every time I needed it was just a waste of time.</p>
+
+<p>Can we do better? Sure we can! Booting directly into Memtest86 from the bootloader without any external media.<br />
+I&rsquo;m running Archlinux and using <a href="https://wiki.archlinux.org/index.php/systemd-boot">systemd-boot</a> as my bootloader,
+I find it to be easy to configure and keeping things simple.
+In case you&rsquo;re using a different <strong>UEFI supported</strong> bootloader you&rsquo;ll need to figure
+out how to manage the boot entry for the Memtest86 efi file.</p>
+
+<p>First we&rsquo;ll need to fetch Memtest86 from <a href="http://www.memtest86.com/downloads/memtest86-iso.tar.gz">here</a>,
+and then set a bootloader entry for it.</p>
+
+<pre><code class="language-bash"># Download and extract archive
+curl -O http://www.memtest86.com/downloads/memtest86-iso.tar.gz
+mkdir memtest86
+tar -zxvf memtest86-iso.tar.gz -C memtest86
+
+# Extract iso
+# I'm using 7z from p7zip package but you can also mount the iso to pull the files
+cd memtest86
+7z x Memtest86-7.2.iso
+
+# Move the efi file to our boot partition
+mv ./EFI/BOOT/BOOTX64.EFI /boot/EFI/Boot/memtest.efi
+</code></pre>
+
+<p>Now we need to place an entry config for the bootloader to read.
+With systemd-boot, all we need to do is to create a new file like this:</p>
+
+<h4 id="memtest-conf">memtest.conf</h4>
+
+<pre><code class="language-bash"># This file should be located at /boot/loader/entries/memtest.conf
+
+title	Memtest86
+efi	EFI/Boot/memtest.efi
+</code></pre>
+
+<p>With that done we can now reboot the system and behold a new entry on the bootloader&rsquo;s menu,
+choosing it should boot directly to Memtest86.</p>
+
+<h3 id="remarks">Remarks:</h3>
+
+<ul>
+<li>This method should work with any efi file you might want to boot.</li>
+<li>The <code>efi</code> path in the entry conf file is relative to the ESP (EFI System Partition).</li>
+<li>Things like certain paths might vary with time or on different systems.</li>
+</ul>
 
 </div>
 
@@ -195,11 +267,11 @@
   
 
     
-
-    
-    <a class="next" href="https://liranv.github.io/post/booting-memtest86-uefi/" title="Booting Memtest86 with UEFI">
-      Next
+    <a class="prev" href="https://liranv.github.io/post/bootingup/" title="booting up">
+      Previous
     </a>
+    
+
     
 
   

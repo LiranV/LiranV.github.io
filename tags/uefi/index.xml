@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Post-rsses on Panic! at the Kernel</title>
-    <link>https://liranv.github.io/post/index.xml</link>
-    <description>Recent content in Post-rsses on Panic! at the Kernel</description>
+    <title>Panic! at the Kernel</title>
+    <link>https://liranv.github.io/tags/uefi/index.xml</link>
+    <description>Recent content on Panic! at the Kernel</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-EN</language>
-    <lastBuildDate>Mon, 19 Dec 2016 04:42:12 +0200</lastBuildDate>
-    <atom:link href="https://liranv.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://liranv.github.io/tags/uefi/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Booting Memtest86 with UEFI</title>
@@ -78,18 +77,6 @@ choosing it should boot directly to Memtest86.&lt;/p&gt;
 &lt;li&gt;The &lt;code&gt;efi&lt;/code&gt; path in the entry conf file is relative to the ESP (EFI System Partition).&lt;/li&gt;
 &lt;li&gt;Things like certain paths might vary with time or on different systems.&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>booting up</title>
-      <link>https://liranv.github.io/post/bootingup/</link>
-      <pubDate>Sun, 18 Dec 2016 22:50:30 +0200</pubDate>
-      
-      <guid>https://liranv.github.io/post/bootingup/</guid>
-      <description>
-
-&lt;h4 id=&#34;hello-world&#34;&gt;Hello, World!&lt;/h4&gt;
 </description>
     </item>
     
