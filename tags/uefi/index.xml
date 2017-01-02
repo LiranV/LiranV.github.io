@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Panic! at the Kernel</title>
+    <title>Uefi on Panic! at the Kernel</title>
     <link>https://liranv.github.io/tags/uefi/index.xml</link>
-    <description>Recent content on Panic! at the Kernel</description>
+    <description>Recent content in Uefi on Panic! at the Kernel</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-EN</language>
     <atom:link href="https://liranv.github.io/tags/uefi/index.xml" rel="self" type="application/rss+xml" />

@@ -549,8 +549,8 @@ kbd {
 }
 code {
     padding: 2px 4px;
-    background: rgba(0, 0, 0, .04);
-    color: #b11
+    background: #3f3f3f;
+    color: #dcdcdc
 }
 pre code {
     padding: none;

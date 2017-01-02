@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Unknown Terminals and Remote Hosts  &middot; Panic! at the Kernel</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<meta name="description" content="" />
+
+<meta name="keywords" content="linux, termite, ssh, terminfo, ">
+
+
+<meta property="og:title" content="Unknown Terminals and Remote Hosts  &middot; Panic! at the Kernel ">
+<meta property="og:site_name" content="Panic! at the Kernel"/>
+<meta property="og:url" content="https://liranv.github.io/post/unknown-terminals-and-remote-hosts/" />
+<meta property="og:locale" content="en-EN">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:description" content=""/>
+<meta property="og:article:published_time" content="2017-01-01T22:32:39&#43;02:00" />
+<meta property="og:article:modified_time" content="2017-01-01T22:32:39&#43;02:00" />
+
+  
+    
+<meta property="og:article:tag" content="linux">
+    
+<meta property="og:article:tag" content="termite">
+    
+<meta property="og:article:tag" content="ssh">
+    
+<meta property="og:article:tag" content="terminfo">
+    
+  
+
+  
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@LiranV" />
+<meta name="twitter:creator" content="@LiranV" />
+<meta name="twitter:title" content="Unknown Terminals and Remote Hosts" />
+<meta name="twitter:description" content="" />
+<meta name="twitter:url" content="https://liranv.github.io/post/unknown-terminals-and-remote-hosts/" />
+<meta name="twitter:domain" content="https://liranv.github.io/">
+  
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "headline": "Unknown Terminals and Remote Hosts",
+    "author": {
+      "@type": "Person",
+      "name": "http://profiles.google.com/+?rel=author"
+    },
+    "datePublished": "2017-01-01",
+    "description": "",
+    "wordCount":  607 
+  }
+</script>
+
+
+
+<link rel="canonical" href="https://liranv.github.io/post/unknown-terminals-and-remote-hosts/" />
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://liranv.github.io/touch-icon-144-precomposed.png">
+<link href="https://liranv.github.io/favicon.png" rel="icon">
+
+<meta name="generator" content="Hugo 0.18" />
+
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link href='https://fonts.googleapis.com/css?family=Merriweather:300%7CRaleway%7COpen+Sans' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://liranv.github.io/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://liranv.github.io/css/style.css">
+<link rel="stylesheet" href="https://liranv.github.io/css/highlight/zenburn.css">
+
+  
+</head>
+<body>
+  <main id="main-wrapper" class="container main_wrapper has-sidebar">
+    <header id="main-header" class="container main_header">
+  <div class="container brand">
+  <div class="container title h1-like">
+  <a class="baselink" href="https://liranv.github.io/">
+  P!ATK
+
+</a>
+
+</div>
+
+  
+<div class="container topline">
+  
+  Yet another tech blog
+
+
+</div>
+
+
+</div>
+
+  <nav class="container nav primary no-print">
+  
+
+<a class="homelink" href="https://liranv.github.io/">Home</a>
+
+
+  
+<a href="https://liranv.github.io/about">About</a>
+
+<a href="https://liranv.github.io/post" title="Show list of posts">Posts</a>
+
+<a href="https://liranv.github.io/tags" title="Show list of tags">Tags</a>
+
+
+</nav>
+
+<div class="container nav secondary no-print">
+  
+
+
+<a id="contact-link-github" class="contact_link" href="https://github.com/LiranV">
+  <span class="fa fa-github-square"></span><span>github</span></a>
+
+
+
+
+
+<a id="contact-link-linkedin" class="contact_link" href="https://www.linkedin.com/in/liranv">
+  <span class="fa fa-linkedin-square"></span><span>linkedin</span></a>
+
+
+
+
+
+
+
+<a id="contact-link-twitter" class="contact_link" href="https://twitter.com/LiranV">
+  <span class="fa fa-twitter-square"></span><span>twitter</span></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+  
+
+</header>
+
+
+<article id="main-content" class="container main_content single">
+  <header class="container hat">
+  <h1>Unknown Terminals and Remote Hosts
+</h1>
+
+  <div class="metas">
+<time datetime="2017-01-01">1 Jan, 2017</time>
+
+
+  
+  &middot; Read in about 3 min
+  &middot; (607 Words)
+  <br>
+  
+<a class="label" href="https://liranv.github.io/tags/linux">linux</a>
+
+<a class="label" href="https://liranv.github.io/tags/termite">termite</a>
+
+<a class="label" href="https://liranv.github.io/tags/ssh">ssh</a>
+
+<a class="label" href="https://liranv.github.io/tags/terminfo">terminfo</a>
+
+
+
+</div>
+
+</header>
+
+  <div class="container content">
+  
+
+<p>For quite some time now I&rsquo;ve been using <a href="https://i3wm.org/">i3</a> as my (tiling) window manager of choice.
+When I just started using it, I&rsquo;ve coupled it with
+<a href="http://software.schmorp.de/pkg/rxvt-unicode.html">rxvt-unicode</a> (aka urxvt) only because I
+noticed many other users of i3 were using it. In a certain point of time after using urxvt,
+I started to look for an alternative terminal that will be easier to configure and
+will support copy &amp; paste to and from the clipboard out-of-the-box.</p>
+
+<p>That&rsquo;s when I found <a href="https://github.com/thestinger/termite">termite</a>:</p>
+
+<blockquote>
+<p>A keyboard-centric VTE-based terminal, aimed at use within a window manager with tiling and/or
+tabbing support.</p>
+</blockquote>
+
+<p><em>termite</em> delivered all the features I wanted while still remaining lightweight and snappy for use with i3.
+When I first tried to use <em>termite</em>, suddenly some keys where not performing the tasks they should.<br />
+For example: <strong><em>Backspace</em></strong> didn&rsquo;t delete characters anymore, the <strong><em>Home</em></strong> and <strong><em>End</em></strong>
+buttons just inserted some weird characters into the shell, and even autocomplete didn&rsquo;t work well.
+I remembered that I&rsquo;ve encountered this kind of behavior in the past, and that it is somehow related to the
+<code>TERM</code> environment variable.</p>
+
+<p>After some reading I realised that the <code>TERM</code> variable should be set to <code>xterm-terminfo</code>.
+So I did just that:</p>
+
+<pre><code class="language-bash"># ~/.zshrc
+export TERM=xterm-color
+</code></pre>
+
+<p>And what do you know, everything worked just fine.</p>
+
+<h3 id="wait-what-is-this-terminfo-anyway">Wait.. What is This <em>terminfo</em> Anyway?</h3>
+
+<p>From <a href="http://tldp.org/HOWTO/Text-Terminal-HOWTO-16.html#ss16.1">TLDP</a>:</p>
+
+<blockquote>
+<p>Terminfo (formerly Termcap) is a database of terminal capabilities and more.
+For every (well almost) model of terminal it tells application programs what the
+terminal is capable of doing. It tells what escape sequences (or control characters)
+to send to the terminal in order to do things such as move the cursor to a new location,
+erase part of the screen, scroll the screen, change modes, change appearance (colors,
+brightness, blinking, underlining, reverse video etc.).</p>
+</blockquote>
+
+<p>Also good to know that:</p>
+
+<blockquote>
+<p>The terminfo database is compiled and thus has a source part and a compiled part.</p>
+</blockquote>
+
+<p>So basically, <em>terminfo</em> supplies the application with the means to interact with different terminals
+in a device-independent manner.</p>
+
+<h3 id="happy-ending">Happy Ending!</h3>
+
+<p>Not just yet&hellip;<br />
+When I tried to work on remote hosts (via SSH) all the previous problems came back.
+But now, knowing what caused them, I quickly changed my shell configuration to set the
+<code>TERM</code> variable, restarted the shell, and&hellip;<br />
+I got some errors along the lines of <code>unknown terminal type xterm-termite</code> and
+<code>open terminal failed: missing or unsuitable terminal: xterm-termite</code>.</p>
+
+<h3 id="let-s-fix-that">Let&rsquo;s Fix That</h3>
+
+<p>It turns out that <em>terminfo</em> doesn&rsquo;t contain the needed information in it&rsquo;s database about how
+<em>termite</em> works.<br />
+One way of making things right will be to install <em>termite</em> on the remote host, and this should place
+the relevant <em>terminfo</em> files on the server. But this is not always possible as we might not have
+the privileges of the mighty <strong>root</strong> at our disposal in order to install packages on the host.
+And even if possible might not be the best solution.</p>
+
+<p>The other approach is to manually insert the <em>termite</em> terminal capabilities to the <em>terminfo</em>
+database.
+We should first get the capabilities source file for <em>termite</em>. This could be done in more that one
+way. We can grab the <code>termite.terminfo</code> file from the project&rsquo;s <a href="https://github.com/thestinger/termite">Github repo</a> or extract it from
+a machine that has <em>termite</em> installed.
+To achieve the latter:</p>
+
+<pre><code class="language-bash"># On local host 
+infocmp &gt; termite.terminfo
+# Then transfer the created file to the remote host (scp)
+
+# On remote host
+tic -x termite.terminfo
+</code></pre>
+
+<p><em>tic</em> is the <em>Terminfo Compiler</em>, it takes source files that defines terminal capabilities and compiles
+them for <em>terminfo</em> to work with.<br />
+This will install the necessary file (locally to the user) for <em>terminfo</em> to support <em>termite</em>.<br />
+And we are done!</p>
+
+<h6 id="happy-new-year">Happy New Year!</h6>
+
+</div>
+
+
+  <footer class="container">
+  <div class="container navigation no-print">
+  <h2>Navigation</h2>
+  
+  
+
+    
+    <a class="prev" href="https://liranv.github.io/post/booting-memtest86-uefi/" title="Booting Memtest86 with UEFI">
+      Previous
+    </a>
+    
+
+    
+
+  
+
+
+</div>
+
+  <div class="container comments">
+  <h2>Comments</h2>
+  
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//liranblog.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
+</footer>
+
+</article>
+      <footer id="main-footer" class="container main_footer">
+  
+
+  <div class="container nav foot no-print">
+  
+<a href="https://liranv.github.io/license">license</a>
+
+
+  <a class="toplink" href="#">back to top</a>
+
+</div>
+
+  <div class="container credits">
+  
+<div class="container footline">
+  
+
+</div>
+
+
+  
+
+</div>
+
+</footer>
+
+    </main>
+    
+<script type="text/javascript">
+  (function() {
+    
+    
+    if (window.location.hostname == "localhost")
+      return;
+
+    var dsq = document.createElement('script'); dsq.async = true; dsq.type = 'text/javascript';
+    dsq.src = '//liranblog.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+<script src="https://liranv.github.io/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-79166533-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+    
+  </body>
+</html>
+

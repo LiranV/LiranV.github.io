@@ -1,12 +1,114 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Panic! at the Kernel</title>
+    <title>Linux on Panic! at the Kernel</title>
     <link>https://liranv.github.io/tags/linux/index.xml</link>
-    <description>Recent content on Panic! at the Kernel</description>
+    <description>Recent content in Linux on Panic! at the Kernel</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-EN</language>
     <atom:link href="https://liranv.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Unknown Terminals and Remote Hosts</title>
+      <link>https://liranv.github.io/post/unknown-terminals-and-remote-hosts/</link>
+      <pubDate>Sun, 01 Jan 2017 22:32:39 +0200</pubDate>
+      
+      <guid>https://liranv.github.io/post/unknown-terminals-and-remote-hosts/</guid>
+      <description>
+
+&lt;p&gt;For quite some time now I&amp;rsquo;ve been using &lt;a href=&#34;https://i3wm.org/&#34;&gt;i3&lt;/a&gt; as my (tiling) window manager of choice.
+When I just started using it, I&amp;rsquo;ve coupled it with
+&lt;a href=&#34;http://software.schmorp.de/pkg/rxvt-unicode.html&#34;&gt;rxvt-unicode&lt;/a&gt; (aka urxvt) only because I
+noticed many other users of i3 were using it. In a certain point of time after using urxvt,
+I started to look for an alternative terminal that will be easier to configure and
+will support copy &amp;amp; paste to and from the clipboard out-of-the-box.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s when I found &lt;a href=&#34;https://github.com/thestinger/termite&#34;&gt;termite&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;A keyboard-centric VTE-based terminal, aimed at use within a window manager with tiling and/or
+tabbing support.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;termite&lt;/em&gt; delivered all the features I wanted while still remaining lightweight and snappy for use with i3.
+When I first tried to use &lt;em&gt;termite&lt;/em&gt;, suddenly some keys where not performing the tasks they should.&lt;br /&gt;
+For example: &lt;strong&gt;&lt;em&gt;Backspace&lt;/em&gt;&lt;/strong&gt; didn&amp;rsquo;t delete characters anymore, the &lt;strong&gt;&lt;em&gt;Home&lt;/em&gt;&lt;/strong&gt; and &lt;strong&gt;&lt;em&gt;End&lt;/em&gt;&lt;/strong&gt;
+buttons just inserted some weird characters into the shell, and even autocomplete didn&amp;rsquo;t work well.
+I remembered that I&amp;rsquo;ve encountered this kind of behavior in the past, and that it is somehow related to the
+&lt;code&gt;TERM&lt;/code&gt; environment variable.&lt;/p&gt;
+
+&lt;p&gt;After some reading I realised that the &lt;code&gt;TERM&lt;/code&gt; variable should be set to &lt;code&gt;xterm-terminfo&lt;/code&gt;.
+So I did just that:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# ~/.zshrc
+export TERM=xterm-color
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And what do you know, everything worked just fine.&lt;/p&gt;
+
+&lt;h3 id=&#34;wait-what-is-this-terminfo-anyway&#34;&gt;Wait.. What is This &lt;em&gt;terminfo&lt;/em&gt; Anyway?&lt;/h3&gt;
+
+&lt;p&gt;From &lt;a href=&#34;http://tldp.org/HOWTO/Text-Terminal-HOWTO-16.html#ss16.1&#34;&gt;TLDP&lt;/a&gt;:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Terminfo (formerly Termcap) is a database of terminal capabilities and more.
+For every (well almost) model of terminal it tells application programs what the
+terminal is capable of doing. It tells what escape sequences (or control characters)
+to send to the terminal in order to do things such as move the cursor to a new location,
+erase part of the screen, scroll the screen, change modes, change appearance (colors,
+brightness, blinking, underlining, reverse video etc.).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Also good to know that:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;The terminfo database is compiled and thus has a source part and a compiled part.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So basically, &lt;em&gt;terminfo&lt;/em&gt; supplies the application with the means to interact with different terminals
+in a device-independent manner.&lt;/p&gt;
+
+&lt;h3 id=&#34;happy-ending&#34;&gt;Happy Ending!&lt;/h3&gt;
+
+&lt;p&gt;Not just yet&amp;hellip;&lt;br /&gt;
+When I tried to work on remote hosts (via SSH) all the previous problems came back.
+But now, knowing what caused them, I quickly changed my shell configuration to set the
+&lt;code&gt;TERM&lt;/code&gt; variable, restarted the shell, and&amp;hellip;&lt;br /&gt;
+I got some errors along the lines of &lt;code&gt;unknown terminal type xterm-termite&lt;/code&gt; and
+&lt;code&gt;open terminal failed: missing or unsuitable terminal: xterm-termite&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;let-s-fix-that&#34;&gt;Let&amp;rsquo;s Fix That&lt;/h3&gt;
+
+&lt;p&gt;It turns out that &lt;em&gt;terminfo&lt;/em&gt; doesn&amp;rsquo;t contain the needed information in it&amp;rsquo;s database about how
+&lt;em&gt;termite&lt;/em&gt; works.&lt;br /&gt;
+One way of making things right will be to install &lt;em&gt;termite&lt;/em&gt; on the remote host, and this should place
+the relevant &lt;em&gt;terminfo&lt;/em&gt; files on the server. But this is not always possible as we might not have
+the privileges of the mighty &lt;strong&gt;root&lt;/strong&gt; at our disposal in order to install packages on the host.
+And even if possible might not be the best solution.&lt;/p&gt;
+
+&lt;p&gt;The other approach is to manually insert the &lt;em&gt;termite&lt;/em&gt; terminal capabilities to the &lt;em&gt;terminfo&lt;/em&gt;
+database.
+We should first get the capabilities source file for &lt;em&gt;termite&lt;/em&gt;. This could be done in more that one
+way. We can grab the &lt;code&gt;termite.terminfo&lt;/code&gt; file from the project&amp;rsquo;s &lt;a href=&#34;https://github.com/thestinger/termite&#34;&gt;Github repo&lt;/a&gt; or extract it from
+a machine that has &lt;em&gt;termite&lt;/em&gt; installed.
+To achieve the latter:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# On local host 
+infocmp &amp;gt; termite.terminfo
+# Then transfer the created file to the remote host (scp)
+
+# On remote host
+tic -x termite.terminfo
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;em&gt;tic&lt;/em&gt; is the &lt;em&gt;Terminfo Compiler&lt;/em&gt;, it takes source files that defines terminal capabilities and compiles
+them for &lt;em&gt;terminfo&lt;/em&gt; to work with.&lt;br /&gt;
+This will install the necessary file (locally to the user) for &lt;em&gt;terminfo&lt;/em&gt; to support &lt;em&gt;termite&lt;/em&gt;.&lt;br /&gt;
+And we are done!&lt;/p&gt;
+
+&lt;h6 id=&#34;happy-new-year&#34;&gt;Happy New Year!&lt;/h6&gt;
+</description>
+    </item>
     
     <item>
       <title>Booting Memtest86 with UEFI</title>

@@ -2,8 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://liranv.github.io/</loc>
-    <lastmod>2016-12-19T04:42:12+02:00</lastmod>
+    <loc>https://liranv.github.io/post/unknown-terminals-and-remote-hosts/</loc>
+    <lastmod>2017-01-01T22:32:39+02:00</lastmod>
   </url>
   
   <url>
@@ -23,6 +23,59 @@
   
   <url>
     <loc>https://liranv.github.io/license/</loc>
+  </url>
+  
+  <url>
+    <loc>https://liranv.github.io/tags/linux/</loc>
+    <lastmod>2017-01-01T22:32:39+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liranv.github.io/</loc>
+    <lastmod>2017-01-01T22:32:39+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liranv.github.io/post/</loc>
+    <lastmod>2017-01-01T22:32:39+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liranv.github.io/tags/ssh/</loc>
+    <lastmod>2017-01-01T22:32:39+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liranv.github.io/tags/systemd-boot/</loc>
+    <lastmod>2016-12-19T04:42:12+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liranv.github.io/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liranv.github.io/tags/terminfo/</loc>
+    <lastmod>2017-01-01T22:32:39+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liranv.github.io/tags/termite/</loc>
+    <lastmod>2017-01-01T22:32:39+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liranv.github.io/tags/uefi/</loc>
+    <lastmod>2016-12-19T04:42:12+02:00</lastmod>
+    <priority>0</priority>
   </url>
   
 </urlset>
