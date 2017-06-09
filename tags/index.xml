@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Panic! at the Kernel</title>
+    <link>https://liranv.github.io/tags/</link>
+    <description>Recent content in Tags on Panic! at the Kernel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-EN</language>
+    <lastBuildDate>Fri, 09 Jun 2017 03:16:53 +0300</lastBuildDate>
+    
+	<atom:link href="https://liranv.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Android</title>
+      <link>https://liranv.github.io/tags/android/</link>
+      <pubDate>Fri, 09 Jun 2017 03:16:53 +0300</pubDate>
+      
+      <guid>https://liranv.github.io/tags/android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Flac</title>
+      <link>https://liranv.github.io/tags/flac/</link>
+      <pubDate>Fri, 09 Jun 2017 03:16:53 +0300</pubDate>
+      
+      <guid>https://liranv.github.io/tags/flac/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Id3</title>
+      <link>https://liranv.github.io/tags/id3/</link>
+      <pubDate>Fri, 09 Jun 2017 03:16:53 +0300</pubDate>
+      
+      <guid>https://liranv.github.io/tags/id3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://liranv.github.io/tags/linux/</link>
+      <pubDate>Sun, 01 Jan 2017 22:32:39 +0200</pubDate>
+      
+      <guid>https://liranv.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ssh</title>
+      <link>https://liranv.github.io/tags/ssh/</link>
+      <pubDate>Sun, 01 Jan 2017 22:32:39 +0200</pubDate>
+      
+      <guid>https://liranv.github.io/tags/ssh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Systemd Boot</title>
+      <link>https://liranv.github.io/tags/systemd-boot/</link>
+      <pubDate>Mon, 19 Dec 2016 04:42:12 +0200</pubDate>
+      
+      <guid>https://liranv.github.io/tags/systemd-boot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Terminfo</title>
+      <link>https://liranv.github.io/tags/terminfo/</link>
+      <pubDate>Sun, 01 Jan 2017 22:32:39 +0200</pubDate>
+      
+      <guid>https://liranv.github.io/tags/terminfo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Termite</title>
+      <link>https://liranv.github.io/tags/termite/</link>
+      <pubDate>Sun, 01 Jan 2017 22:32:39 +0200</pubDate>
+      
+      <guid>https://liranv.github.io/tags/termite/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Uefi</title>
+      <link>https://liranv.github.io/tags/uefi/</link>
+      <pubDate>Mon, 19 Dec 2016 04:42:12 +0200</pubDate>
+      
+      <guid>https://liranv.github.io/tags/uefi/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

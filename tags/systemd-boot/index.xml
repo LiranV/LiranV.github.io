@@ -2,11 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Systemd Boot on Panic! at the Kernel</title>
-    <link>https://liranv.github.io/tags/systemd-boot/index.xml</link>
+    <link>https://liranv.github.io/tags/systemd-boot/</link>
     <description>Recent content in Systemd Boot on Panic! at the Kernel</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-EN</language>
-    <atom:link href="https://liranv.github.io/tags/systemd-boot/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 19 Dec 2016 04:42:12 +0200</lastBuildDate>
+    
+	<atom:link href="https://liranv.github.io/tags/systemd-boot/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Booting Memtest86 with UEFI</title>
@@ -14,70 +17,9 @@
       <pubDate>Mon, 19 Dec 2016 04:42:12 +0200</pubDate>
       
       <guid>https://liranv.github.io/post/booting-memtest86-uefi/</guid>
-      <description>
-
-&lt;p&gt;For a very long time I&amp;rsquo;ve been using &lt;a href=&#34;http://www.memtest.org&#34;&gt;Memtest86+&lt;/a&gt; (Memtest86 fork) to test RAM modules.&lt;br /&gt;
-Whether I was overcloking my own PC, debugging blue screens or instabilities, this was my go-to tool.&lt;/p&gt;
-
-&lt;p&gt;The original Memtest86 was developed by a man named Chris Brady, but was later purchased by &lt;a href=&#34;https://www.passmark.com&#34;&gt;PassMark Software&lt;/a&gt;,
-and now being actively developed by them.
-Memtest86+ on the other hand seems to be abandoned by now, with the latest release date being September 27, 2013.
-Unlike Memtest86+, Memtest86 is a non open-source software, luckily PassMark still offers a free version with most of the needed
-features included (&lt;a href=&#34;http://www.memtest86.com/features.htm&#34;&gt;feature table&lt;/a&gt;).
-So for the last few years I&amp;rsquo;ve been using Memtest86, and I get the impression it&amp;rsquo;s working as good, if not better
-than Memtest86+ while providing better support for new hardware (e.g., DDR4), and most importantly, provides an EFI version.&lt;/p&gt;
-
-&lt;h3 id=&#34;let-s-get-down-to-business&#34;&gt;Let&amp;rsquo;s Get Down to Business&lt;/h3&gt;
-
-&lt;p&gt;Often times I would boot Memtest86 from a USB drive or even a CD in the ancient days.
-This was fine for booting Memtest86 on machines other than mine.
-But flashing a USB drive with Memtest86 every time I needed it was just a waste of time.&lt;/p&gt;
-
-&lt;p&gt;Can we do better? Sure we can! Booting directly into Memtest86 from the bootloader without any external media.&lt;br /&gt;
-I&amp;rsquo;m running Archlinux and using &lt;a href=&#34;https://wiki.archlinux.org/index.php/systemd-boot&#34;&gt;systemd-boot&lt;/a&gt; as my bootloader,
-I find it to be easy to configure and keeping things simple.
-In case you&amp;rsquo;re using a different &lt;strong&gt;UEFI supported&lt;/strong&gt; bootloader you&amp;rsquo;ll need to figure
-out how to manage the boot entry for the Memtest86 efi file.&lt;/p&gt;
-
-&lt;p&gt;First we&amp;rsquo;ll need to fetch Memtest86 from &lt;a href=&#34;http://www.memtest86.com/downloads/memtest86-iso.tar.gz&#34;&gt;here&lt;/a&gt;,
-and then set a bootloader entry for it.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# Download and extract archive
-curl -O http://www.memtest86.com/downloads/memtest86-iso.tar.gz
-mkdir memtest86
-tar -zxvf memtest86-iso.tar.gz -C memtest86
-
-# Extract iso
-# I&#39;m using 7z from p7zip package but you can also mount the iso to pull the files
-cd memtest86
-7z x Memtest86-7.2.iso
-
-# Move the efi file to our boot partition
-mv ./EFI/BOOT/BOOTX64.EFI /boot/EFI/Boot/memtest.efi
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now we need to place an entry config for the bootloader to read.
-With systemd-boot, all we need to do is to create a new file like this:&lt;/p&gt;
-
-&lt;h4 id=&#34;memtest-conf&#34;&gt;memtest.conf&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;# This file should be located at /boot/loader/entries/memtest.conf
-
-title	Memtest86
-efi	EFI/Boot/memtest.efi
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;With that done we can now reboot the system and behold a new entry on the bootloader&amp;rsquo;s menu,
-choosing it should boot directly to Memtest86.&lt;/p&gt;
-
-&lt;h3 id=&#34;remarks&#34;&gt;Remarks:&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;This method should work with any efi file you might want to boot.&lt;/li&gt;
-&lt;li&gt;The &lt;code&gt;efi&lt;/code&gt; path in the entry conf file is relative to the ESP (EFI System Partition).&lt;/li&gt;
-&lt;li&gt;Things like certain paths might vary with time or on different systems.&lt;/li&gt;
-&lt;/ul&gt;
-</description>
+      <description>For a very long time I&amp;rsquo;ve been using Memtest86+ (Memtest86 fork) to test RAM modules.
+Whether I was overcloking my own PC, debugging blue screens or instabilities, this was my go-to tool.
+The original Memtest86 was developed by a man named Chris Brady, but was later purchased by PassMark Software, and now being actively developed by them. Memtest86+ on the other hand seems to be abandoned by now, with the latest release date being September 27, 2013.</description>
     </item>
     
   </channel>

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://liranv.github.io/post/tags-denial-of-playback/</loc>
+    <lastmod>2017-06-09T03:16:53+03:00</lastmod>
+  </url>
   
   <url>
     <loc>https://liranv.github.io/post/unknown-terminals-and-remote-hosts/</loc>
@@ -26,6 +32,29 @@
   </url>
   
   <url>
+    <loc>https://liranv.github.io/tags/android/</loc>
+    <lastmod>2017-06-09T03:16:53+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liranv.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liranv.github.io/tags/flac/</loc>
+    <lastmod>2017-06-09T03:16:53+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://liranv.github.io/tags/id3/</loc>
+    <lastmod>2017-06-09T03:16:53+03:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://liranv.github.io/tags/linux/</loc>
     <lastmod>2017-01-01T22:32:39+02:00</lastmod>
     <priority>0</priority>
@@ -33,13 +62,13 @@
   
   <url>
     <loc>https://liranv.github.io/</loc>
-    <lastmod>2017-01-01T22:32:39+02:00</lastmod>
+    <lastmod>2017-06-09T03:16:53+03:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://liranv.github.io/post/</loc>
-    <lastmod>2017-01-01T22:32:39+02:00</lastmod>
+    <lastmod>2017-06-09T03:16:53+03:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -57,6 +86,7 @@
   
   <url>
     <loc>https://liranv.github.io/tags/</loc>
+    <lastmod>2017-06-09T03:16:53+03:00</lastmod>
     <priority>0</priority>
   </url>
   

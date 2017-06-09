@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Android on Panic! at the Kernel</title>
+    <link>https://liranv.github.io/tags/android/</link>
+    <description>Recent content in Android on Panic! at the Kernel</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-EN</language>
+    <lastBuildDate>Fri, 09 Jun 2017 03:16:53 +0300</lastBuildDate>
+    
+	<atom:link href="https://liranv.github.io/tags/android/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Tags Denial-of-playback</title>
+      <link>https://liranv.github.io/post/tags-denial-of-playback/</link>
+      <pubDate>Fri, 09 Jun 2017 03:16:53 +0300</pubDate>
+      
+      <guid>https://liranv.github.io/post/tags-denial-of-playback/</guid>
+      <description>In the past years I&amp;rsquo;ve encountered some FLAC files that for some reason refused to play on my Android devices. When I did try to play them, I was greeted by the following message:
+ Sorry, the player does not support this type of audio file.  Until recently I&amp;rsquo;ve accepted this to be a bug in Android / my music player app (PlayerPro which is awesome!). But I&amp;rsquo;ve decided to try and uncover what made those FLAC files &amp;ldquo;unsupported&amp;rdquo;, which turned out to be easier than I initially thought.</description>
+    </item>
+    
+  </channel>
+</rss>
